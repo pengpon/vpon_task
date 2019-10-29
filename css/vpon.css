@@ -1,0 +1,192 @@
+@import url(../css/reset.css);
+.container {
+  position: relative;
+  -webkit-animation: light 2s ease-in;
+  animation: light 2s ease-in; }
+  .container .background-light {
+    width: 100%;
+    height: 100vh; }
+  .container .fortuneBasket {
+    width: 15%;
+    position: absolute;
+    left: 0;
+    top: 20%;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    -webkit-filter: drop-shadow(20px 20px 100px rgba(0, 0, 0, 0.8));
+    filter: drop-shadow(20px 20px 100px rgba(0, 0, 0, 0.8));
+    -webkit-animation: basket-zoom 3s, shake 1s 3s;
+    animation: basket-zoom 3s, shake 1s 3s; }
+    .container .fortuneBasket img {
+      width: 100%; }
+  .container .fortunePaper {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto; }
+    .container .fortunePaper img {
+      width: 60%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto; }
+  .container .button-message {
+    color: #ba1b06;
+    text-decoration: none;
+    background: rgba(248, 214, 35, 0.7);
+    padding: 32px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 4px solid;
+    position: fixed;
+    left: 50%;
+    top: 80%;
+    z-index: 999; }
+
+@-webkit-keyframes light {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes light {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-webkit-keyframes basket-zoom {
+  from {
+    width: 5%; }
+  to {
+    width: 15%; } }
+
+@keyframes basket-zoom {
+  from {
+    width: 5%; }
+  to {
+    width: 15%; } }
+
+@-webkit-keyframes shake {
+  10%,
+  90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+    transform: translate3d(-1px, 0, 0); }
+  20%,
+  80% {
+    -webkit-transform: translate3d(2px, 0, 0);
+    transform: translate3d(2px, 0, 0); }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-4px, 0, 0); }
+  40%,
+  60% {
+    -webkit-transform: translate3d(4px, 0, 0);
+    transform: translate3d(4px, 0, 0); } }
+
+@keyframes shake {
+  10%,
+  90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+    transform: translate3d(-1px, 0, 0); }
+  20%,
+  80% {
+    -webkit-transform: translate3d(2px, 0, 0);
+    transform: translate3d(2px, 0, 0); }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-4px, 0, 0); }
+  40%,
+  60% {
+    -webkit-transform: translate3d(4px, 0, 0);
+    transform: translate3d(4px, 0, 0); } }
+
+@-webkit-keyframes shake2 {
+  0% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg); }
+  50% {
+    -webkit-transform: rotate(-1deg);
+    transform: rotate(-1deg); }
+  100% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg); } }
+
+@keyframes shake2 {
+  0% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg); }
+  50% {
+    -webkit-transform: rotate(-1deg);
+    transform: rotate(-1deg); }
+  100% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg); } }
+
+.modal-window {
+  font-family: 'Noto Sans TC', sans-serif;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s; }
+  .modal-window .fortune-content {
+    display: inline-block; }
+  .modal-window:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto; }
+  .modal-window > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: #ffffff; }
+  .modal-window header {
+    font-weight: bold; }
+  .modal-window h1 {
+    font-size: 300%;
+    margin: 0 0 15px;
+    text-align: center; }
+  .modal-window .fortune-text {
+    font-size: 36px;
+    display: inline-block;
+    -webkit-writing-mode: vertical-lr;
+    -ms-writing-mode: tb-lr;
+    writing-mode: vertical-lr;
+    line-height: 80px; }
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none; }
+  .modal-close:hover {
+    color: black; }

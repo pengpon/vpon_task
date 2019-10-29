@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>vpon</title>
+	<!-- <link rel="stylesheet"
+		type="text/css"
+		href="fortune.css"> -->
+	<link rel="stylesheet"
+		href="./css/vpon.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+		rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		<img class="background-light"
+			src="img/background.png">
+		<!-- <button class="button-message">
+			Try to shake your phone!!
+		</button> -->
+		<div class="fortuneBasket">
+			<a href=" #open-modal">
+				<img id="shake"
+					src="img/fortuneBasket.png">
+		</div> </a>
+
+		<!-- <div class="fortunePaper"> -->
+		<div class="fortunePaper"
+			id="scene">
+			<img data-depth="0.2"
+				class="fortunePaper-item1"
+				src="img/fortunePaper1.png">
+			<img data-depth="0.6"
+				class="fortunePaper-item1"
+				src="img/fortunePaper2.png">
+		</div>
+
+		<!-- <span class="max-good">
+  					<img src="img/max-good.png"> -->
+
+
+
+		<!-- <li>
+  				<img src="img/mid-good.png">
+  			</li>
+  			<li>
+  				<img src="img/good.png">
+  			</li>
+  			<li>
+  				<img src="img/last-good.png">
+  			</li>
+  			<li>
+  				<img src="img/bad.png">
+  			</li>
+  			<li>
+  				<img src="img/max-bad.png">
+  			</li> -->
+
+
+		<!-- </div> -->
+	</div>
+
+	<div id="open-modal"
+		class="modal-window">
+		<div>
+			<a href="#"
+				title="Close"
+				class="modal-close">close</a>
+			<h1>今日運勢 [吉]</h1>
+			<div class="fortune-content">
+				<div class="fortune-text">
+					<img src="./img/good.png"
+						alt="">
+				</div>
+				<div class="fortune-text">當你的才華撐不起你的野心時，<br>靜下心來好好學習。</div>
+
+			</div>
+
+
+		</div>
+	</div>
+
+	<!-- <canvas id="myCanvas" width="360" height="450" style="border:1px solid #d3d3d3;">
+    </canvas>
+    <script>
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", deviceOrientationListener);
+      } else {
+        alert("Sorry, your browser doesn't support Device Orientation");
+      }
+		</script> -->
+	<!-- parallax test -->
+	<!-- <div id="scene">
+		<div data-depth="0.2">123</div>
+		<div data-depth="0.6">456</div>
+	</div> -->
+	<script>
+		var scene = document.getElementById('scene');
+		var parallaxInstance = new Parallax(scene);
+
+		var basket = document.getElementById('shake');
+		basket.addEventListener('click', function () {
+			console.log('test test');
+		}, false);
+		// $('#shake').click(function () {
+		// 	shake($('.animalIcon'));
+		// 	console.log('1212');
+		// });
+
+		// function shake(thing) {
+		// 	console.log('function', thing);
+		// 	var interval = 100;
+		// 	var distance = 10;
+		// 	var times = 6;
+
+		// 	for (var i = 0; i < (times + 1); i++) {
+		// 		$(thing).animate({
+		// 			left: (i % 2 == 0 ? distance : distance * -1)
+		// 		}, interval);
+		// 	}
+		// 	$(thing).animate({
+		// 		left: 0,
+		// 		top: 0
+		// 	}, interval);
+		// }
+	</script>
+
+
+	<script>
+		if (window.DeviceOrientationEvent == true) {
+			window.addEventListener('deviceorientation', function (event) {
+					console.log('yoyo');
+					// a = document.getElementById('alpha'),
+					// 	b = document.getElementById('beta'),
+					// 	g = document.getElementById('gamma'),
+					alpha = event.alpha,
+						beta = event.beta,
+						gamma = event.gamma;
+
+					// a.innerHTML = Math.round(alpha);
+					// b.innerHTML = Math.round(beta);
+					// g.innerHTML = Math.round(gamma);
+
+				},
+				false);
+		} else {
+			console.log('不支援喔');
+		}
+	</script>
+</body>
+
+</html>

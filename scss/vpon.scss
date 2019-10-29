@@ -1,0 +1,214 @@
+@import '../css/reset.css';
+
+.container {
+
+    position: relative;
+    animation: light 2s ease-in;
+
+    .background-light {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .fortuneBasket {
+        width: 15%;
+        position: absolute;
+        left: 0;
+        top: 20%;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        filter: drop-shadow(20px 20px 100px rgba(0, 0, 0, .8));
+
+        // transform: translate(-50%, -50%);
+        animation: basket-zoom 3s, shake 1s 3s;
+        // animation: shake 2s infinite;
+
+        img {
+            width: 100%;
+        }
+
+        // :hover {
+        //     // animation: shake2 100ms infinite;
+        // }
+    }
+
+    .fortunePaper {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+
+
+        img {
+            width: 60%;
+            // height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            // transform: translate(-50%, -50%);
+
+
+        }
+    }
+
+    .button-message {
+        color: #ba1b06;
+        // text-transform: uppercase;
+        text-decoration: none;
+        background: rgba(248, 214, 35, 0.7);
+        padding: 32px;
+        border-radius: 10px;
+        display: inline-block;
+        border: 4px solid;
+        // font-size: 20px;
+        // transition: all 0.4s ease 0s;
+        position: fixed;
+        left: 50%;
+        top: 80%;
+        z-index: 999;
+
+        // text-align: center;
+
+    }
+
+
+
+
+}
+
+@keyframes light {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes basket-zoom {
+    from {
+        width: 5%;
+    }
+
+    to {
+        width: 15%;
+    }
+
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes shake2 {
+    0% {
+        transform: rotate(2deg);
+    }
+
+    50% {
+        transform: rotate(-1deg);
+    }
+
+    100% {
+        transform: rotate(2deg);
+    }
+}
+
+.modal-window {
+    .fortune-content {
+        display: inline-block;
+    }
+
+    font-family: 'Noto Sans TC',
+    sans-serif;
+
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+
+    &:target {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &>div {
+        width: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 2em;
+        background: #ffffff;
+    }
+
+    header {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 300%;
+        margin: 0 0 15px;
+        text-align: center;
+    }
+
+    .fortune-text {
+        font-size: 36px;
+        display: inline-block;
+        writing-mode: vertical-lr;
+        line-height: 80px;
+        ;
+    }
+}
+
+.modal-close {
+    color: #aaa;
+    line-height: 50px;
+    font-size: 80%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 70px;
+    text-decoration: none;
+
+    &:hover {
+        color: black;
+    }
+}
