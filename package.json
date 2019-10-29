@@ -1,0 +1,27 @@
+{
+  "name": "vponDemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengpon/vpon_task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pengpon/vpon_task/issues"
+  },
+  "homepage": "https://github.com/pengpon/vpon_task#readme",
+  "dependencies": {
+    "bufferutil": "4.0.1",
+    "express": "4.17.1",
+    "utf-8-validate": "5.0.2",
+    "ws": "7.2.0"
+  }
+}
