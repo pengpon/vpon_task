@@ -2,7 +2,7 @@
 // 本機
 // let ws = new WebSocket('ws://localhost:3000')
 // Heroku server端 
-let ws = new WebSocket(location.origin.replace(/^http/, 'ws'))
+let ws = new WebSocket('ws: //websocket-starting.herokuapp.com/')
 //開啟後執行的動作，指定一個 function 會在連結 WebSocket 後執行
 ws.onopen = () => {
     console.log('open connection')
