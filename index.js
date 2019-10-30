@@ -1,14 +1,12 @@
 // 使用 WebSocket 的網址向 Server 開啟連結
 // 本機
-let ws = new WebSocket('ws://localhost:3000', {
-    transports: ['websocket']
-});
+// let ws = new WebSocket('ws://localhost:3000', 'websocket');
 // Heroku server端 
-// let ws = new WebSocket('ws://websocket-starting.herokuapp.com/')
+// let ws = new WebSocket('ws://websocket-starting.herokuapp.com/','websocket')
 // var HOST = location.origin.replace(/^http/, 'ws')
-// var HOST = 'wss://websocket-starting.herokuapp.com';
+var HOST = 'wss://websocket-starting.herokuapp.com';
 
-// var ws = new WebSocket(HOST);
+var ws = new WebSocket(HOST, 'websocket');
 //開啟後執行的動作，指定一個 function 會在連結 WebSocket 後執行
 ws.onopen = () => {
     console.log('open connection')
