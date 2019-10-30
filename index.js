@@ -6,7 +6,7 @@
 // var HOST = location.origin.replace(/^http/, 'ws')
 var HOST = 'wss://websocket-starting.herokuapp.com';
 
-var ws = new WebSocket(HOST, 'websocket');
+var ws = new WebSocket(HOST);
 //開啟後執行的動作，指定一個 function 會在連結 WebSocket 後執行
 ws.onopen = () => {
     console.log('open connection')
