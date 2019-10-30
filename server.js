@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const socketIO = require('socket.io');
+const SocketServer = require('ws').Server;
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
@@ -11,11 +11,29 @@ const server = express()
     .use((req, res) => res.sendFile(INDEX))
     .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-const io = socketIO(server);
-
-io.on('connection', (socket) => {
-    console.log('Client connected');
-    socket.on('disconnect', () => console.log('Client disconnected'));
+const wss = new SocketServer({
+    server
 });
 
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+//當 WebSocket 從外部連結時執行
+wss.on('connection', ws => {
+
+    //連結時執行此 console 提示
+    console.log('Client connected')
+
+    //對 message 設定監聽，接收從 Client 發送的訊息
+    ws.on('message', data => {
+        //取得所有連接中的 client
+        let clients = wss.clients
+
+        //做迴圈，發送訊息至每個 client
+        clients.forEach(client => {
+            client.send(data)
+        })
+    })
+
+    //當 WebSocket 的連線關閉時執行
+    ws.on('close', () => {
+        console.log('Close connected')
+    })
+})

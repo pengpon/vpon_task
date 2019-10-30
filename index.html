@@ -1,17 +1,26 @@
-<html>
+<!-- <html>
 
 <body>
     <p id='server-time'></p>
-    <!-- <script src="../socket.io/socket.io.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
-    <script src="https://websocket-starting.herokuapp.com/socket.io/socket.io.js"></script>
     <script>
-        var socket = io();
+        var HOST = location.origin.replace('ws://localhost:3000')
+        var ws = new WebSocket(HOST);
         var el = document.getElementById('server-time');
-        socket.on('time', function (timeString) {
-            el.innerHTML = 'Server time: ' + timeString;
-        });
+        ws.onmessage = function (event) {
+            el.innerHTML = 'Server time: ' + event.data;
+        };
     </script>
+</body>
+
+</html> -->
+
+<html>
+
+<body>
+    <script src='./index.js'></script>
+    <div>
+        hello
+    </div>
 </body>
 
 </html>
