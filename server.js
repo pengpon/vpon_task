@@ -13,7 +13,8 @@ const server = express()
 
 // var wss = http.createServer();
 const wss = new SocketServer({
-    server
+    server,
+    origin: 'https:///websocket-starting.herokuapp.com/'
 });
 
 
