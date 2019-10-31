@@ -85,10 +85,10 @@
         var parallaxInstance = new Parallax(scene);
 
         // create websocket & connect with server
-        let ws = new WebSocket('wss:///websocket-starting.herokuapp.com/', );
+        // let ws = new WebSocket('ws://localhost:3000');
         // Need to modify!  according server ip address
         // let ws = new WebSocket('ws://192.168.31.120:3000');
-        // let ws = new WebSocket('ws://websocket-starting.herokuapp.com/');
+        let ws = new WebSocket('ws://websocket-starting.herokuapp.com/');
 
 
         // connenction start
