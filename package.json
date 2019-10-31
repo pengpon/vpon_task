@@ -24,6 +24,7 @@
     "https-proxy-agent": "^3.0.1",
     "node": "^12.13.0",
     "socket.io": "2.3.0",
+    "update-node": "^0.1.0",
     "utf-8-validate": "5.0.2",
     "ws": "^7.2.0"
   }
