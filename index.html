@@ -1,26 +1,133 @@
-<!-- <html>
-
-<body>
-    <p id='server-time'></p>
-    <script>
-        var HOST = location.origin.replace('ws://localhost:3000')
-        var ws = new WebSocket(HOST);
-        var el = document.getElementById('server-time');
-        ws.onmessage = function (event) {
-            el.innerHTML = 'Server time: ' + event.data;
-        };
-    </script>
-</body>
-
-</html> -->
-
+<!DOCTYPE html>
 <html>
 
+<head>
+    <title>vpon_task</title>
+
+    <link rel="stylesheet"
+        href="./css/vpon.css">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+        rel="stylesheet">
+    <!-- parallax.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+
+</head>
+
 <body>
-    <script src='./index.js'></script>
-    <div>
-        hello
+    <div class="container">
+        <img class="background-light"
+            src="img/background.png">
+        <div class="fortuneBasket">
+            <!-- <a href=" #open-modal"> -->
+            <img id="shake"
+                src="img/fortuneBasket.png">
+            <!-- </a> -->
+        </div>
+
+        <div class="fortunePaper"
+            id="scene">
+            <img data-depth="0.2"
+                class="fortunePaper-item1"
+                src="img/fortunePaper1.png">
+            <img data-depth="0.6"
+                class="fortunePaper-item1"
+                src="img/fortunePaper2.png">
+        </div>
     </div>
+
+    <!-- Message in Mobile device -->
+    <svg class="mobile-message"
+        viewBox="45 60 400 320"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill="#fff"
+            d="M 90 210 C 90 180 90 150 90 150 C 150 150 180 150 180 150 C 180 150 300 150 300 150 C 300 150 330 150 390 150 C 390 150 390 180 390 210 C 390 240 390 270 390 270 C 330 270 300 270 300 270 C 300 270 180 270 180 270 C 180 270 150 270 90 270 C 90 270 90 240 90 210"
+            mask="url(#knockout-text)">
+        </path>
+        <mask id="knockout-text">
+            <rect width="100%"
+                height="100%"
+                fill="#fff"
+                x="0"
+                y="0" />
+            <text x="147"
+                y="227"
+                fill="#000">Shake!!</text>
+        </mask>
+    </svg>
+
+    <!-- Fortunepaper Result in Web page -->
+    <div id="open-modal"
+        class="modal-window  web-message">
+        <div>
+            <h1>今日運勢</h1>
+            <div class="fortune-content">
+                <div class="fortune-text">
+                    <img src="./img/good.png"
+                        alt="">
+                </div>
+                <div class="fortune-text">當你的才華撐不起你的野心時，<br>靜下心來好好學習。</div>
+                <div><button onclick="window.location.reload()">ok</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message in web page -->
+    <div class="web-message">
+        <p>Also use your mobile browser(google) to enter this page.</p>
+    </div>
+
+
+
+    <script>
+        // Fortunepaper parallex
+        var scene = document.getElementById('scene');
+        var parallaxInstance = new Parallax(scene);
+
+        // create websocket & connect with server
+        // let ws = new WebSocket('ws://localhost:3000');
+        // Need to modify!  according server ip address
+        // let ws = new WebSocket('ws://192.168.31.120:3000');
+        let ws = new WebSocket('ws://websocket-starting.herokuapp.com/');
+
+
+        // connenction start
+        ws.onopen = () => {
+            console.log('open connection');
+
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('devicemotion', function (event) {
+                    var x = Math.round(event.acceleration.x);
+                    var y = Math.round(event.acceleration.y);
+                    var z = Math.round(event.acceleration.z);
+                    x = Math.abs(x);
+                    y = Math.abs(y);
+                    z = Math.abs(z);
+
+                    if ((x * y * z) > 300) {
+                        ws.send('shake');
+                    }
+                }, true);
+
+            } else {
+                console.log('only support mobile');
+            }
+        }
+
+        //after close, run something action
+        ws.onclose = () => {
+            console.log('close connection');
+
+        }
+
+        ws.onmessage = event => {
+            if (event.data == 'shake') {
+                // receive the "shake", show the fortunepaper result
+                let modal = document.getElementById("open-modal");
+                modal.setAttribute('style', "visibility:visible;opacity:1;pointer-events: auto;");
+            }
+        }
+    </script>
 </body>
 
 </html>
