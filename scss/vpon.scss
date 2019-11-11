@@ -225,6 +225,9 @@
         bottom: 0;
     }
 
+    .link-show {
+        visibility: hidden;
+    }
 
 }
 
@@ -288,13 +291,17 @@ svg {
 
 // Message on web page
 .web-message {
+    visibility: hidden;
+    text-align: center;
+
     p {
         // layout
         position: fixed;
-        max-width: 30em;
-        top: 10%;
-        left: 10%;
-
+        max-width: 20em;
+        top: 20%;
+        left: 0;
+        right: 0;
+        margin: auto;
         // looks
         background-color: #fff;
         padding: 1.125em 1.5em;
@@ -336,8 +343,18 @@ button {
     font-size: 20px;
     font-weight: bold;
     margin: auto;
+    cursor: pointer;
+
 }
 
 button:hover {
     background: #262626;
+}
+
+// Go button
+.link-show {
+    position: fixed;
+    bottom: 10vh;
+    left: 0;
+    right: 0;
 }

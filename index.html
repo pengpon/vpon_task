@@ -3,7 +3,6 @@
 
 <head>
     <title>vpon_task</title>
-
     <link rel="stylesheet"
         href="./css/vpon.css">
     <!-- google font -->
@@ -11,7 +10,6 @@
         rel="stylesheet">
     <!-- parallax.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-
 </head>
 
 <body>
@@ -34,6 +32,7 @@
                 class="fortunePaper-item1"
                 src="img/fortunePaper2.png">
         </div>
+
     </div>
 
     <!-- Message in Mobile device -->
@@ -56,6 +55,7 @@
         </mask>
     </svg>
 
+
     <!-- Fortunepaper Result in Web page -->
     <div id="open-modal"
         class="modal-window  web-message">
@@ -74,26 +74,72 @@
 
     <!-- Message in web page -->
     <div class="web-message">
-        <p>Also use your mobile browser(google) to enter this page.</p>
+        <p>
+            Also use your mobile to scan this QR-code !(open by google browser)
+            <span>
+                <img id="qrcode-url"
+                    src=" "
+                    width="300" />
+            </span>
+        </p>
+    </div>
+
+    <!-- web show  -->
+    <div class="link-show"
+        id="go">
+        <button onclick="showQrcode()">Go</button>
     </div>
 
 
-
     <script>
+        // QR-code show
+        function showQrcode() {
+            document.getElementsByClassName('web-message')[1].setAttribute('style', "visibility:visible");
+        };
+
         // Fortunepaper parallex
         var scene = document.getElementById('scene');
         var parallaxInstance = new Parallax(scene);
 
-        // create websocket & connect with server
-        // let ws = new WebSocket('ws://localhost:3000');
-        // Need to modify!  according server ip address
-        // let ws = new WebSocket('ws://192.168.31.120:3000');
-        let ws = new WebSocket('ws://websocket-starting.herokuapp.com/');
+        //get URL-token 
+        let url = window.location.search;
+        let token = url.split('?token=g')[1] || 0;
+        console.log(token + 'token');
 
+        if (token) {
+            this.ws = new WebSocket('wss://vpon-task.herokuapp.com?token=g' + token);
+
+        } else {
+            // this.ws = new WebSocket('ws://192.168.1.105:3000');
+            this.ws = new WebSocket('ws://vpon-task.herokuapp.com');
+
+        }
 
         // connenction start
         ws.onopen = () => {
+            // client建立連線
             console.log('open connection');
+
+            ws.onmessage = event => {
+                eventObj = JSON.parse(event.data);
+
+                //監聽server傳來的group token值
+                if (Object.keys(eventObj).indexOf('group') !== -1) {
+                    this.token = eventObj.group;
+                }
+                // 更換qrcode url
+                document.getElementById('qrcode-url').src =
+                    "http://www.funcode-tech.com/Encoder_Service/img.aspx?custid=1&username=&public&codetype=QR&EClevel=0&data=https://pengpon.github.io/vpon_task?token=g" +
+                    this.token
+
+                // 監聽server傳來的shake目標
+                if (Object.keys(eventObj).indexOf('shake') !== (-1) && eventObj.shake == this.token) {
+                    // receive the "shake", show the fortunepaper result
+                    let modal = document.getElementById("open-modal");
+                    modal.setAttribute('style', "visibility:visible;opacity:1;pointer-events: auto;");
+                }
+            }
+
 
             if (window.DeviceOrientationEvent) {
                 window.addEventListener('devicemotion', function (event) {
@@ -105,7 +151,10 @@
                     z = Math.abs(z);
 
                     if ((x * y * z) > 300) {
-                        ws.send('shake');
+                        let url = window.location.search;
+                        ws.send(JSON.stringify({
+                            'shake': this.token
+                        }));
                     }
                 }, true);
 
@@ -118,14 +167,6 @@
         ws.onclose = () => {
             console.log('close connection');
 
-        }
-
-        ws.onmessage = event => {
-            if (event.data == 'shake') {
-                // receive the "shake", show the fortunepaper result
-                let modal = document.getElementById("open-modal");
-                modal.setAttribute('style', "visibility:visible;opacity:1;pointer-events: auto;");
-            }
         }
     </script>
 </body>
